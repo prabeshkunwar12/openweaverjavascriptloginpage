@@ -1,0 +1,89 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="styles.css">
+	<title>Login page</title>
+</head>
+<script type="text/javascript">
+	var input = document.getElementById("password");
+	var userNamePassword = [{username:"root", password:"root"}];
+
+	function register(form) {
+		userNamePassword.push({username: form.username.value.toLowerCase(), password: form.password.value});
+		console.log(userNamePassword);
+		alert("registration successful");
+	}
+	
+	function checkUsername(givenUsername) {
+		for(var i=0; i<userNamePassword.length(); i++) {
+			if(userNamePassword[i].username.toLocaleLowerCase()===givenUsername) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	function display(form) {
+		var user = userNamePassword.find((user)=>user.username===form.username.value);
+
+		if (user) {
+			if (form.password.value === user.password) {
+				location = "page2.html"
+			} else {
+				alert("Invalid Password")
+			}
+		} else {
+			alert("Invalid Username")
+		}
+	}
+</script>
+
+<body>
+	<div class="container">
+		<div class="screen">
+			<div class="screen__content">
+				<form class="login">
+					<h1>Login</h1>
+					<div class="login__field">
+						<i class="login__icon fas fa-user"></i>
+						
+						<input type="text" class="login__input" placeholder="User name" name="username"/>
+					</div>
+					<div class="login__field">
+						<i class="login__icon fas fa-lock"></i>
+
+						<input id="password" type="password" name="password" class="login__input" placeholder="Password" />
+					</div>
+					<br>
+					<input class="button__icon fas fa-chevron-right" id="button" type="button" value="Login" onClick="display(this.form)"/>
+
+				</form>
+				<form class="register">
+					<h1>Register</h1>
+					<div class="login__field">
+						<i class="login__icon fas fa-user"></i>
+						
+						<input type="text" class="login__input" placeholder="User name" name="username"/>
+					</div>
+					<div class="login__field">
+						<i class="login__icon fas fa-lock"></i>
+
+						<input id="password" type="password" name="password" class="login__input" placeholder="Password" />
+					</div>
+					<br>
+					<input class="button__icon fas fa-chevron-right" id="button" type="button" value="Register" onClick="register(this.form)"/>
+
+				</form>
+
+			</div>
+			<div class="screen__background">
+				<span class="screen__background__shape screen__background__shape4"></span>
+				<span class="screen__background__shape screen__background__shape3"></span>
+				<span class="screen__background__shape screen__background__shape2"></span>
+				<span class="screen__background__shape screen__background__shape1"></span>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
